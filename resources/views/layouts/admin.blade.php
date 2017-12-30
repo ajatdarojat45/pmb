@@ -66,7 +66,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+                    <a href="{{ route('dashboard') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                 </li>
                 <li>
                     <a href="{{ route('kelas/index') }}"><i class="fa fa-university"></i> <span class="nav-label">Kelas</span></a>
@@ -74,13 +74,18 @@
                 <li>
                     <a href="#"><i class="fa fa-users"></i> <span class="nav-label">Peserta</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="#">New</a></li>
+                        <li><a href="{{ route('peserta/index', 'new') }}">New</a></li>
+                        <li><a href="{{ route('peserta/index', 'confirm') }}">Confirm</a></li>
+                        <li><a href="{{ route('peserta/index', 'valid') }}">Valid</a></li>
+                        <li><a href="{{ route('peserta/index', 'block') }}">Block</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-money"></i> <span class="nav-label">Pembayaran</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="#">New</a></li>
+                        <li><a href="{{ route('payment/index', 'new') }}">New</a></li>
+                        <li><a href="{{ route('payment/index', 'valid') }}">Valid</a></li>
+                        <li><a href="{{ route('payment/index', 'block') }}">Block</a></li>
                     </ul>
                 </li>
                 <li>

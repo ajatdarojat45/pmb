@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     protected $fillable = [
-    	'code', 'name', 'description', 'date', 'locate', 'price', 'quota',
+    	'code', 'name', 'description', 'date', 'locate', 'price', 'price_new', 'quota',
     ];
 
     public function pesertas()

@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 @section('title')
-Kelas - PMB
+Peserta - PMB
 @endsection
 @section('content')
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-4">
-        <h2>Kelas</h2>
+        <h2>Peserta</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
             <li class="active">
-                <strong>Kelas</strong>
+                <strong>Peserta</strong>
             </li>
         </ol>
     </div>
@@ -26,12 +26,12 @@ Kelas - PMB
     <div class="row">
         <div class="col-lg-12 animated fadeInRight">
             <div class="ibox-content">
-                <h2 class="page-header">Kelas</h2>
+                <h2 class="page-header">Peserta</h2>
                 <div class="mail-tools tooltip-demo m-t-md">
                     <div class="btn-group pull-right">
                         {{-- {{ $banks->links() }} --}}
                     </div>
-                    <a class="btn btn-primary btn-sm" href="{{ route('kelas/create') }}"><i class="fa fa-plus-circle"></i> Add</a>
+                    <a class="btn btn-primary btn-sm" href="#"><i class="fa fa-plus-circle"></i> Add</a>
                 </div><br>
                 <div class="table-responsive">
                     <table id="example1" class="table table-hover table-striped">
@@ -39,12 +39,13 @@ Kelas - PMB
                             <tr>
                                 <th style="text-align: center;">No.</th>
                                 <th style="text-align: center;">Code</th>
+                                <th style="text-align: center;">NIK</th>
                                 <th style="text-align: center;">Name</th>
-                                <th style="text-align: center;">Date</th>
-                                <th style="text-align: center;">Price Member</th>
-                                <th style="text-align: center;">Price Non Member</th>
-                                <th style="text-align: center;">Quota</th>
-                                <th style="text-align: center;">Locate</th>
+                                <th style="text-align: center;">Email</th>
+                                <th style="text-align: center;">Phone</th>
+                                <th style="text-align: center;">Fimz ID</th>
+                                <th style="text-align: center;">Stat</th>
+                                <th style="text-align: center;">Created at</th>
                                 <th style="text-align: center;">Action</th>
                             </tr>
                         </thead>
@@ -52,18 +53,19 @@ Kelas - PMB
                             @php
                             $no = 0;
                             @endphp
-                            @foreach ($kelases as $kelas)
+                            @foreach ($pesertas as $peserta)
                                 <tr>
-                                    <td class="text-center">{{++$no}}</td>
-                                    <td class="text-center">{{$kelas->code}}</td>
-                                    <td class="text-center">{{$kelas->name}}</td>
-                                    <td class="text-center">{{$kelas->date}}</td>
-                                    <td class="text-center">{{$kelas->price}}</td>
-                                    <td class="text-center">{{$kelas->price_new}}</td>
-                                    <td class="text-center">{{$kelas->quota}}</td>
-                                    <td class="text-center">{{$kelas->locate}}</td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn btn-primary btn-outline"><i class="fa fa-file"></i></a>
+                                    <td>{{++$no}}</td>
+                                    <td>{{$peserta->code}}</td>
+                                    <td>{{$peserta->nik}}</td>
+                                    <td>{{$peserta->name}}</td>
+                                    <td>{{$peserta->email}}</td>
+                                    <td>{{$peserta->phone}}</td>
+                                    <td>{{$peserta->fimz_id}}</td>
+                                    <td>{{$peserta->stat}}</td>
+                                    <td>{{$peserta->created_at}}</td>
+                                    <td>
+                                        <a href="" class="btn btn-primary btn-sm btn-outline"><i class="fa fa-file"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

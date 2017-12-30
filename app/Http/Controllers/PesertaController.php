@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Bank;
 use App\Peserta;
 use Illuminate\Http\Request;
+use App\Events\userRegistered;
+use App\Jobs\sendUserEmailAfterRegistered;
 
 class PesertaController extends Controller
 {
@@ -28,6 +30,9 @@ class PesertaController extends Controller
     		'phone'		=> $request->phone,
     		'kelas_id'	=> $request->kelas_id,
     	]);
+
+        event(new userRegistered($peserta));
+        // dispatch(new sendUserEmailAfterRegistered($peserta));
 
     	return redirect()->route('peserta/berhasil', ['code' => $peserta->code]);
     }
@@ -67,6 +72,12 @@ class PesertaController extends Controller
             'kelas_id'      => $request->kelas_id,
         ]);
 
+        // kirim email
+        // Mail::to($peserta->email)->send(new sendUserEmailAfterRegister($peserta));
+
+        event(new userRegistered($peserta));
+        // dispatch(new sendUserEmailAfterRegistered($peserta));
+
         return redirect()->route('peserta/berhasil', ['code' => $peserta->code]);
     }
 
@@ -83,5 +94,26 @@ class PesertaController extends Controller
         $banks = Bank::orderBy('name', 'asc')->get();
 
     	return view('pesertas.detail', compact('peserta', 'banks'));
+    }
+
+    public function index($param)
+    {
+        if ($param == 'new') {
+            $pesertas = Peserta::doesnthave('payment')->get();
+        }elseif ($param == 'confirm') {
+            $pesertas = Peserta::whereHas('payment', function($query){
+                                        $query->where('stat', 0); })
+                                    ->get();
+        }elseif ($param == 'valid') {
+            $pesertas = Peserta::whereHas('payment', function($query){
+                                        $query->where('stat', 1); })
+                                    ->get();
+        }elseif ($param == 'block') {
+            $pesertas = Peserta::whereHas('payment', function($query){
+                                        $query->where('stat', 2); })
+                                    ->get();
+        }
+
+        return view('pesertas.index', compact('pesertas'));
     }
 }

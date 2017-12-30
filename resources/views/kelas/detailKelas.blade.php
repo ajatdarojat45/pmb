@@ -215,10 +215,12 @@ Index - PMB
 					</div>
 					<div class="row">
 						<div class="col-md-2 col-lg-2">
-							<label class="control-label">Description</label>
+							<label class="control-label">Description :</label>
 						</div>
-						<div class="col-md-10 col-lg-10">
-							: {{$kelas->description}}
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-lg-12">
+							<font size="1">{!!$kelas->description!!}</font>
 						</div>
 					</div>
 				</div>

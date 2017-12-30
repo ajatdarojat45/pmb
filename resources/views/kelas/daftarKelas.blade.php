@@ -17,25 +17,29 @@ Daftar Kelas - PMB
 						<table class="table table-hover">
 							<thead>
 								<tr>
-									<th>No</th>
-									<th>Name</th>
-									<th>Price</th>
-									<th>Quota</th>
-									<th>Address</th>
-									<th>Date</th>
-									<th>Action</th>
+									<th class="text-center">No</th>
+									<th class="text-center">Name</th>
+									<th class="text-center">Price Member</th>
+									<th class="text-center">Price Non Member</th>
+									<th class="text-center">Quota</th>
+									<th class="text-center">Locate</th>
+									<th class="text-center">Date</th>
+									<th class="text-center">Action</th>
 								</tr>
 							</thead>
 							<tbody>
 								@foreach ($kelases as $kelas)
 									<tr>
-										<td>{{++$no}}</td>
-										<td>{{$kelas->name}}</td>
-										<td>{{$kelas->price}}</td>
-										<td>{{$kelas->quota}}</td>
+										<td class="text-center">{{++$no}}</td>
+										<td >{{$kelas->name}}</td>
+										<td class="text-right">{{$kelas->price}}</td>
+										<td class="text-right">{{$kelas->price_new}}</td>
+										<td class="text-center">{{$kelas->quota}}</td>
 										<td>{{$kelas->locate}}</td>
-										<td>{{$kelas->Date}}</td>
-										<td><a href="{{ route('detailKelas', $kelas->id) }}"><i class="fa fa-file"></i></a></td>
+										<td class="text-center">{{$kelas->date}}</td>
+										<td class="text-center">
+											<a href="{{ route('detailKelas', $kelas->id) }}"><i class="fa fa-file"></i></a>
+										</td>
 									</tr>
 								@endforeach
 							</tbody>

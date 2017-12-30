@@ -78,10 +78,6 @@
                 <div class="links">
                     <p><b>Silahkan melakukan transfer sebesar Rp. {{$peserta->kelas->price}} ke rekening 157.000.287.0279. (Mandiri) an. Mohamad Darwin.</b></p>
                 </div>
-
-                <div class="links">
-                    <a href="{{ route('daftarKelas') }}"><i class="fa fa-file"></i> Back</a>
-                </div>
             </div>
         </div>
     </body>

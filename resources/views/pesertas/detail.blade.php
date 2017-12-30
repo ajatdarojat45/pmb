@@ -34,7 +34,18 @@ Detail - PMB
 	<div class="row">
 		<div class="jumbotron">
 			<div class="container">
-				<center><h1>{{$peserta->code}} <i class="fa fa-check-circle" style="color: green"></i></h1></center>
+				<center>
+					<h1>{{$peserta->code}} 
+					@if (count($peserta->payment) <> 0)
+						@if ($peserta->payment->stat == 0)
+							<i class="fa fa-check-clock" style="color: green"></i></h1>
+						@elseif($peserta->payment->stat == 1)
+							<i class="fa fa-check-circle" style="color: green"></i></h1>
+						@elseif($peserta->payment->stat == 2)
+							<i class="fa fa-times-circle" style="color: green"></i></h1>
+						@endif
+					@endif
+				</center>
 				{{-- peserta --}}
 				<div class="row">
 					<div class="col-md-6 col-lg-6">
@@ -132,50 +143,58 @@ Detail - PMB
 					<div class="col-md-6 col-lg-6">
 						<center><h3>Detail Kelas</h3></center>
 						<div class="row">
-							<div class="col-md-2 col-lg-2">
+							<div class="col-md-4 col-lg-4">
 								<label class="control-label">Code</label>
 							</div>
-							<div class="col-md-10 col-lg-10">
+							<div class="col-md-8 col-lg-8">
 								: {{$peserta->kelas->code}}
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-2 col-lg-2">
+							<div class="col-md-4 col-lg-4">
 								<label class="control-label">Name</label>
 							</div>
-							<div class="col-md-10 col-lg-10">
+							<div class="col-md-8 col-lg-8">
 								: {{$peserta->kelas->name}}
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-2 col-lg-2">
+							<div class="col-md-4 col-lg-4">
 								<label class="control-label">Date</label>
 							</div>
-							<div class="col-md-10 col-lg-10">
+							<div class="col-md-8 col-lg-8">
 								: {{$peserta->kelas->date}}
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-2 col-lg-2">
-								<label class="control-label">Price</label>
+							<div class="col-md-4 col-lg-4">
+								<label class="control-label">Price Member</label>
 							</div>
-							<div class="col-md-10 col-lg-10">
+							<div class="col-md-8 col-lg-8">
 								: {{$peserta->kelas->price}}
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-2 col-lg-2">
+							<div class="col-md-4 col-lg-4">
+								<label class="control-label">Price Non Member</label>
+							</div>
+							<div class="col-md-8 col-lg-8">
+								: {{$peserta->kelas->price_new}}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-lg-4">
 								<label class="control-label">Quota</label>
 							</div>
-							<div class="col-md-10 col-lg-10">
+							<div class="col-md-8 col-lg-8">
 								: {{$peserta->kelas->quota}}
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-2 col-lg-2">
+							<div class="col-md-4 col-lg-4">
 								<label class="control-label">Locate</label>
 							</div>
-							<div class="col-md-10 col-lg-10">
+							<div class="col-md-8 col-lg-8">
 								: {{$peserta->kelas->locate}}
 							</div>
 						</div>
@@ -244,7 +263,7 @@ Detail - PMB
 					@else
 					<div class="alert alert-danger">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<strong>Warning!</strong> Silahkan melakukan transfer sebesar Rp. {{$peserta->kelas->price}} ke rekening xxxxxxx
+						<strong>Notic!</strong> Silahkan melakukan transfer sebesar Rp. {{$peserta->kelas->price}} ke rekening 157.000.287.0279. (Mandiri) an. Mohamad Darwin.
 					</div>
 					<center>
 					<a class="btn btn-primary" data-toggle="modal" href='#modal-id'><i class="fa fa-money"></i> Make a payment</a>

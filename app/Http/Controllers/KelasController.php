@@ -11,7 +11,9 @@ class KelasController extends Controller
     public function daftarKelas()
     {
     	$no = 0;
-    	$kelases = Kelas::orderBy('created_at', 'desc')->get();
+    	$kelases = Kelas::where('id', '!=', 0)
+                        ->where('date', '>', now())
+                        ->orderBy('created_at', 'desc')->get();
 
     	return view('kelas.daftarKelas', compact('kelases', 'no'));
     }
@@ -26,7 +28,7 @@ class KelasController extends Controller
 
     public function index()
     {
-        $kelases = Kelas::orderBy('date', 'desc')->get();
+        $kelases = Kelas::where('id', '!=', 0)->orderBy('date', 'desc')->get();
 
         return view('kelas.index', compact('kelases'));
     }
@@ -34,6 +36,31 @@ class KelasController extends Controller
     public function create()
     {
         return view('kelas.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name'          => 'required',
+            'description'   => 'required',
+            'price'         => 'required',
+            'price_new'     => 'required',
+            'date'          => 'required',
+            'quota'         => 'required',
+        ]);
+
+        $kelas = Kelas::create([
+            'code'          => $request->code,
+            'name'          => $request->name,
+            'description'   => $request->description,
+            'price'         => $request->price,
+            'price_new'     => $request->price_new,
+            'date'          => $request->date,
+            'quota'         => $request->quota,
+            'locate'        => $request->locate,
+        ]);
+
+        return back()->with('success', 'Data added');
     }
 
     public function peraturan()

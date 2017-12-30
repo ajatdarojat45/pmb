@@ -13,13 +13,13 @@
 	<body>
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container">
-				<a class="navbar-brand" href="#">Booking Online Pendakian Gunung Gede Pangrango</a>
+				<a class="navbar-brand" href="{{ route('home') }}">PMB</a>
 			</div>
 		</nav>
 		<br><br><br>
 		<center>
-		<p><b>Pendaftaran Pendakian Gunung Gede Pangrango untuk tanggal 01 Januari 2018 sampai dengan 31 Maret 2018 DITUTUP.</b></p>
-		<p>Pendaftaran Pendakian Gunung Gede Pangrango untuk tanggal 01 Januari 2018 sampai dengan 31 Maret 2018 DITUTUP.</p>
+		<p><b>Selamat datang di wbsite PMB (Powerfull Magic Bussiness)</b></p>
+		<p>Cek kode pendaftaran anda</p>
 		</center>
 		<div class="row">
 			<div class="col-md-4 col-lg-4">

@@ -20,10 +20,10 @@ Product Create - Danuta Cipta Gemilang
     </div>
 </div>
 <div class="wrapper wrapper-content animated fadeInRight ecommerce">
-    @if (session('msg'))
+    @if (session('success'))
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Success!</strong> {{session('msg') }}
+        <strong>Success!</strong> {{session('success') }}
     </div>
     @endif
     <div class="row">
@@ -34,7 +34,7 @@ Product Create - Danuta Cipta Gemilang
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('kelas/store') }}" method="post" enctype="multipart/form-data">
                             <div class="panel-body">
                                 <fieldset class="form-horizontal">
                                     <div class="form-group">
@@ -68,10 +68,31 @@ Product Create - Danuta Cipta Gemilang
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Price:</label>
+                                        <label class="col-sm-2 control-label">Price Member:</label>
                                         <div class="col-sm-4">
                                             <div class="input-group date">
                                                 <span class="input-group-addon"><i class="fa fa-dollar"></i></span><input type="number" class="form-control" value="{{ old('price') }}" name="price">
+                                            </div>
+                                        </div>
+                                        <label class="col-sm-2 control-label">Price Non Member:</label>
+                                        <div class="col-sm-4">
+                                            <div class="input-group date">
+                                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span><input type="number" class="form-control" value="{{ old('price_new') }}" name="price_new">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Date:</label>
+                                        <div class="col-sm-4">
+                                            <div class="" id="data_1">
+                                                @if ($errors->has('start'))
+                                                <span class="help-block">
+                                                    <strong style="color: red"></strong>
+                                                </span>
+                                                @endif
+                                                <div class="input-group date">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="{{ old('date') }}" name="date">
+                                                </div>
                                             </div>
                                         </div>
                                         <label class="col-sm-2 control-label">Quota:</label>
@@ -82,11 +103,9 @@ Product Create - Danuta Cipta Gemilang
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label">Date:</label>
-                                        <div class="col-sm-4">
-                                            <div class="input-group date">
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="{{ old('date') }}" name="date">
-                                            </div>
+                                        <label class="col-sm-2 control-label">Locate:</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="locate">{{old('locate')}}</textarea>
                                         </div>
                                     </div>
                                 </fieldset>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Payment;
 use Illuminate\Http\Request;
+use App\Events\userConfirmed;
+use App\Events\paymentValidation;
 
 class PaymentController extends Controller
 {
@@ -40,6 +42,33 @@ class PaymentController extends Controller
     		'attach'			=>	$imageName,
     	]);
 
+        event(new userConfirmed($payment));
     	return back()->with('success', 'Konfirmasi anda berhasil, terimakasih');
+    }
+
+    public function index($stat)
+    {
+        if ($stat == 'new') {
+            $payments = Payment::where('stat', 0)
+                        ->orderBy('created_at', 'desc')->get();
+        }elseif ($stat == 'valid') {
+            $payments = Payment::where('stat', 1)
+                        ->orderBy('created_at', 'desc')->get();
+        }elseif ($stat == 'block') {
+            $payments = Payment::where('stat', 2)
+                        ->orderBy('created_at', 'desc')->get();
+        }
+
+        return view('payments.index', compact('payments'));
+    }
+
+    public function validasi($id, $stat)
+    {
+        $payment = Payment::findOrFail($id);
+        $payment->stat = $stat;
+        $payment->save();
+
+        event(new paymentValidation($payment));
+        return back()->with('success', 'Pembayaran berhasil di validasi');
     }
 }
